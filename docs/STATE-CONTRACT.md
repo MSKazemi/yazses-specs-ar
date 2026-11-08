@@ -100,3 +100,11 @@ export interface ViewModel {
 - `reduce` never throws on any input, including malformed events from JavaScript callers (return ignored `not-allowed-in-phase`).
 - Debouncing and pinch/tap timing belong to the Lens adapter, not here; this core makes a repeated CONFIRM harmless by phase alone.
 - Plain ES2020 syntax: no `enum`, no decorators, no `namespace`, no top-level await, so Lens Studio's TypeScript can import it.
+
+## Clarifications (Lead, 2026-11-08, after the first implementation)
+
+- A malformed event (unknown `type`, bad or missing `sample`, non-object) is rejected before the phase is considered: ignored with `not-allowed-in-phase` in every phase, including IDLE.
+- A malformed state (unknown `phase`) is returned untouched as ignored `not-allowed-in-phase`. `describe` of a malformed state returns the IDLE view.
+- `canSelect[x]` is true when SELECT_SAMPLE x would be applied: in PLACED and CANCELLED both are true; in DRAFT only the other sample is true (the current one would be ignored as `same-sample`); in IDLE and CONFIRMED both are false.
+- `canReset` is true only in DRAFT, CONFIRMED and CANCELLED (RESET is ignored as `already-clear` in IDLE and PLACED).
+- `confirmCount` keeps its value across RESET. `createInitialState()` returns a fresh frozen object on each call.

@@ -24,7 +24,7 @@ Written on Ubuntu, 2026-11-08, by the repository Lead. Nothing here was run in L
 | Mutation check by the test agent (4 deliberate reducer breaks in a scratch copy) | each broke 3–12 tests |
 | Lens Studio, Preview, CLAD, MCP, LEAF, hardware | **NOT RUN** |
 
-Dependency versions are pinned in `package.json` (TypeScript 7.0.2, vitest 5.1.0). Node must satisfy `^22.12.0 || ^24.0.0 || >=26.0.0`. Lens Studio compiles its own TypeScript; dev tooling here only checks the logic.
+Dependency versions are pinned in `package.json` (TypeScript 7.0.2, vitest 5.1.0). Node must satisfy `^22.12.0 || ^24.0.0 || >=26.0.0`. Lens Studio's default TypeScript target is ES2019 (per the integration research); the core was also type-checked with `--target ES2019 --lib ES2019 --strict` on Ubuntu and passes (exit 0). That is not a Lens Studio compile.
 
 ## Portable interface the Lens adapter calls
 

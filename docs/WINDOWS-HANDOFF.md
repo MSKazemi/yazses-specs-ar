@@ -19,7 +19,7 @@ Written on Ubuntu, 2026-11-08, by the repository Lead. Nothing here was run in L
 
 | Command | Result |
 |---|---|
-| `npm test` | PASS — 5 files, 118 tests, exit 0 (about 9 s) |
+| `npm test` | PASS — 6 files, 162 tests, exit 0 (about 9 s) |
 | `npm run typecheck` | PASS — exit 0 (source and tests) |
 | Mutation check by the test agent (4 deliberate reducer breaks in a scratch copy) | each broke 3–12 tests |
 | Lens Studio, Preview, CLAD, MCP, LEAF, hardware | **NOT RUN** |
@@ -35,6 +35,8 @@ const r = reduce(state, { type: "SELECT_SAMPLE", sample: "A" }); // r.outcome "a
 state = r.state;
 const view = describe(state); // view.cardText, view.statusText, view.canConfirm, view.canSelect.A ...
 ```
+
+Issue #2's `transition(state, action) -> state` (actions `SELECT_SAMPLE_A` / `SELECT_SAMPLE_B` instead of a payload) is a thin wrapper over `reduce`; both are exported from `src/logic`.
 
 Events: `PLACE`, `SELECT_SAMPLE{A|B}`, `CONFIRM`, `CANCEL`, `RESET`, `INTERRUPT`. A draft is never confirmed without `CONFIRM` in `DRAFT`; a repeated `CONFIRM` is ignored by phase. Pinch debouncing belongs in the adapter.
 

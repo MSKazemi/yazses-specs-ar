@@ -14,8 +14,8 @@ Task board: [TASKS.md](TASKS.md) ([epic #1](https://github.com/MSKazemi/yazses-s
 
 | Capability | Implemented | Tested | Where |
 |---|---|---|---|
-| Portable state core: phases `IDLE`, `PLACED`, `DRAFT`, `CONFIRMED`, `CANCELLED`; events `PLACE`, `SELECT_SAMPLE`, `CONFIRM`, `CANCEL`, `RESET`, `INTERRUPT` | Yes (portable TypeScript, no Lens Studio dependency) | PASS: 118 tests in 5 files, `npm test` exit 0 (includes a seeded 100,000-transition property test) | `src/logic/`, [contract](docs/STATE-CONTRACT.md) |
-| View model (`describe`): status text, which controls are enabled, disclosure in every phase | Yes | PASS: covered by the same 118 tests | `src/logic/` |
+| Portable state core: phases `IDLE`, `PLACED`, `DRAFT`, `CONFIRMED`, `CANCELLED`; events `PLACE`, `SELECT_SAMPLE`, `CONFIRM`, `CANCEL`, `RESET`, `INTERRUPT` | Yes (portable TypeScript, no Lens Studio dependency) | PASS: 162 tests in 6 files, `npm test` exit 0 (includes a seeded 100,000-transition property test) | `src/logic/`, [contract](docs/STATE-CONTRACT.md) |
+| View model (`describe`): status text, which controls are enabled, disclosure in every phase | Yes | PASS: covered by the same 162 tests | `src/logic/` |
 | Type check of source and tests | n/a | PASS: `npm run typecheck` exit 0 | `tsconfig*.json` |
 | Lens Studio API mapping and open questions | Written from public documentation by a research agent | NOT RUN (no editor available on Ubuntu) | [INTEGRATION-CONTRACT](docs/INTEGRATION-CONTRACT.md) |
 | Lens Studio project (`.esproj`, scene, scripts) | **No** — PROPOSED, to be created on Windows | NOT RUN | `lens/` (does not exist yet) |

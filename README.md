@@ -8,7 +8,7 @@ The demonstration is designed around two **preset, clearly labelled simulated tr
 
 ## Start here
 
-Read the **[Ubuntu-first → Windows implementation roadmap](ROADMAP.md)** for the exact development stages, parallel Claude Code agent prompts, file ownership, acceptance tests, Windows Lens Studio handoff and competition submission gates.
+Start with the **[live technical task board](TASKS.md)** ([GitHub epic #1](https://github.com/MSKazemi/yazses-specs-ar/issues/1)) for independently assigned issues, exact `git add` / commit / reviewed feature-branch push commands, and ChatGPT remote verification. Then read the **[Ubuntu-first → Windows implementation roadmap](ROADMAP.md)** for full multi-agent coding prompts, acceptance tests, native Lens Studio handoff and submission gates.
 
 ### Platform split
 

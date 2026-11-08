@@ -14,8 +14,8 @@ Task board: [TASKS.md](TASKS.md) ([epic #1](https://github.com/MSKazemi/yazses-s
 
 | Capability | Implemented | Tested | Where |
 |---|---|---|---|
-| Portable state core: phases `IDLE`, `PLACED`, `DRAFT`, `CONFIRMED`, `CANCELLED`; events `PLACE`, `SELECT_SAMPLE`, `CONFIRM`, `CANCEL`, `RESET`, `INTERRUPT` | Yes (portable TypeScript, no Lens Studio dependency) | PASS: 162 tests in 6 files, `npm test` exit 0 (includes a seeded 100,000-transition property test) | `src/logic/`, [contract](docs/STATE-CONTRACT.md) |
-| View model (`describe`): status text, which controls are enabled, disclosure in every phase | Yes | PASS: covered by the same 162 tests | `src/logic/` |
+| Portable state core: phases `IDLE`, `PLACED`, `DRAFT`, `CONFIRMED`, `CANCELLED`; events `PLACE`, `SELECT_SAMPLE`, `CONFIRM`, `CANCEL`, `RESET`, `INTERRUPT` | Yes (portable TypeScript, no Lens Studio dependency) | PASS: 168 tests in 6 files, `npm test` exit 0 (includes a seeded 100,000-transition property test) | `src/logic/`, [contract](docs/STATE-CONTRACT.md) |
+| View model (`describe`): status text, which controls are enabled, disclosure in every phase | Yes | PASS: covered by the same 168 tests | `src/logic/` |
 | Type check of source and tests | n/a | PASS: `npm run typecheck` exit 0 | `tsconfig*.json` |
 | Lens Studio API mapping and open questions | Written from public documentation by a research agent | NOT RUN (no editor available on Ubuntu) | [INTEGRATION-CONTRACT](docs/INTEGRATION-CONTRACT.md) |
 | Lens Studio project (`.esproj`, scene, scripts) | **No** — PROPOSED, to be created on Windows | NOT RUN | `lens/` (does not exist yet) |
@@ -56,7 +56,7 @@ npm test            # vitest run
 npm run typecheck   # tsc --noEmit for source and tests
 ```
 
-Record the printed test counts and exit code from your own run; this README does not contain a pass count because none has been recorded yet.
+The status table above records the Ubuntu run (168 tests in 6 files, exit 0). Re-run the commands on your machine and record your own printed counts and exit codes; a different count means the tests or code changed.
 
 ### Lens Studio project (pending, Windows)
 

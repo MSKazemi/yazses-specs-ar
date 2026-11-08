@@ -42,6 +42,7 @@ export interface ViewModel {
   readonly disclosure: string;
   readonly statusText: string;
   readonly cardText: string | null;
+  readonly sampleLabels: Readonly<Record<SampleId, string>>;
   readonly canPlace: boolean;
   readonly canSelect: Readonly<Record<SampleId, boolean>>;
   readonly canConfirm: boolean;

@@ -51,6 +51,7 @@ export function describe(state: SpatialState): ViewModel;
 export interface ViewModel {
   readonly phase: Phase;
   readonly disclosure: string;                 // always DISCLOSURE, in every phase
+  readonly sampleLabels: Readonly<Record<SampleId, string>>; // always SAMPLE_LABEL, in every phase, so the UI shows "Simulated transcription A/B"
   readonly statusText: string;                 // short plain-text status that names the phase, never colour-only
   readonly cardText: string | null;            // draft text in DRAFT, confirmed text in CONFIRMED, else null
   readonly canPlace: boolean;
@@ -108,3 +109,5 @@ export interface ViewModel {
 - `canSelect[x]` is true when SELECT_SAMPLE x would be applied: in PLACED and CANCELLED both are true; in DRAFT only the other sample is true (the current one would be ignored as `same-sample`); in IDLE and CONFIRMED both are false.
 - `canReset` is true only in DRAFT, CONFIRMED and CANCELLED (RESET is ignored as `already-clear` in IDLE and PLACED).
 - `confirmCount` keeps its value across RESET. `createInitialState()` returns a fresh frozen object on each call.
+
+- `ViewModel.sampleLabels` (added after the first push, issue #2) equals `SAMPLE_LABEL` in every phase, including the malformed-state IDLE view. It changes no transition.

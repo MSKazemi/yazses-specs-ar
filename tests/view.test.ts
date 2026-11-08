@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DISCLOSURE, SAMPLE_TEXT, describe as describeState, reduce } from "../src/logic";
+import { DISCLOSURE, SAMPLE_LABEL, SAMPLE_TEXT, describe as describeState, reduce } from "../src/logic";
 import type { Phase, SpatialState } from "../src/logic";
 import {
   ALL_PHASES,
@@ -155,5 +155,74 @@ describe("describe(): view model", () => {
 
   it("a confirmed card disappears after RESET", () => {
     expect(describeState(stateAfter([PLACE, SELECT_A, CONFIRM, RESET])).cardText).toBeNull();
+  });
+});
+
+describe("describe(): sampleLabels", () => {
+  const malformed = (): SpatialState =>
+    ({ ...stateInPhase("DRAFT"), phase: "BOGUS" }) as unknown as SpatialState;
+
+  it("equals SAMPLE_LABEL and the two exact strings in all five phases", () => {
+    for (const phase of ALL_PHASES) {
+      const { sampleLabels } = describeState(stateInPhase(phase));
+      expect(sampleLabels, phase).toEqual(SAMPLE_LABEL);
+      expect(sampleLabels.A, phase).toBe("Simulated transcription A");
+      expect(sampleLabels.B, phase).toBe("Simulated transcription B");
+      expect(Object.keys(sampleLabels).sort(), phase).toEqual(["A", "B"]);
+    }
+  });
+
+  it("is the same for B drafts and second-cycle states", () => {
+    for (const events of [
+      [PLACE, SELECT_B],
+      [PLACE, SELECT_A, CONFIRM, RESET, SELECT_B, CONFIRM],
+    ]) {
+      expect(describeState(stateAfter(events)).sampleLabels).toEqual(SAMPLE_LABEL);
+    }
+  });
+
+  it("is present for a malformed state (unknown phase)", () => {
+    const { sampleLabels } = describeState(malformed());
+    expect(sampleLabels).toEqual(SAMPLE_LABEL);
+    expect(sampleLabels.A).toBe("Simulated transcription A");
+    expect(sampleLabels.B).toBe("Simulated transcription B");
+  });
+
+  it("is frozen, in every phase and for a malformed state", () => {
+    for (const state of [...ALL_PHASES.map(stateInPhase), malformed()]) {
+      const { sampleLabels } = describeState(state);
+      expect(Object.isFrozen(sampleLabels), String(state.phase)).toBe(true);
+      expect(() => {
+        (sampleLabels as unknown as Record<string, string>)["A"] = "tampered";
+      }).toThrow();
+      expect(sampleLabels.A).toBe("Simulated transcription A");
+      expect(describeState(state).sampleLabels.A).toBe("Simulated transcription A");
+    }
+  });
+
+  it("does not change any other view-model field", () => {
+    const expected: Record<Phase, Record<string, unknown>> = {
+      IDLE: { canPlace: true, canSelect: { A: false, B: false }, canConfirm: false, canCancel: false, canReset: false, cardText: null },
+      PLACED: { canPlace: false, canSelect: { A: true, B: true }, canConfirm: false, canCancel: false, canReset: false, cardText: null },
+      DRAFT: { canPlace: false, canSelect: { A: false, B: true }, canConfirm: true, canCancel: true, canReset: true, cardText: TEXT_A },
+      CONFIRMED: { canPlace: false, canSelect: { A: false, B: false }, canConfirm: false, canCancel: false, canReset: true, cardText: TEXT_A },
+      CANCELLED: { canPlace: false, canSelect: { A: true, B: true }, canConfirm: false, canCancel: false, canReset: true, cardText: null },
+    };
+    for (const phase of ALL_PHASES) {
+      const vm = describeState(stateInPhase(phase));
+      const { sampleLabels: _labels, statusText, ...rest } = vm;
+      expect(rest, phase).toEqual({ phase, disclosure: DISCLOSURE, ...expected[phase] });
+      expect(statusText.trim().length, phase).toBeGreaterThan(0);
+      expect(Object.keys(vm).sort(), phase).toEqual(
+        [
+          "canCancel", "canConfirm", "canPlace", "canReset", "canSelect",
+          "cardText", "disclosure", "phase", "sampleLabels", "statusText",
+        ],
+      );
+    }
+  });
+
+  it("the malformed-state view equals the IDLE view in full, labels included", () => {
+    expect(describeState(malformed())).toEqual(describeState(stateInPhase("IDLE")));
   });
 });

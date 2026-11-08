@@ -1,4 +1,4 @@
-import { DISCLOSURE } from "./samples";
+import { DISCLOSURE, SAMPLE_LABEL } from "./samples";
 import type { Phase, SpatialState, ViewModel } from "./types";
 
 const NONE = Object.freeze({ A: false, B: false });
@@ -31,6 +31,7 @@ export function describe(state: SpatialState): ViewModel {
         phase,
         disclosure: DISCLOSURE,
         statusText: statusFor(phase),
+        sampleLabels: SAMPLE_LABEL,
         cardText: null,
         canPlace: false,
         canSelect: BOTH,
@@ -43,6 +44,7 @@ export function describe(state: SpatialState): ViewModel {
         phase,
         disclosure: DISCLOSURE,
         statusText: statusFor(phase),
+        sampleLabels: SAMPLE_LABEL,
         cardText: state.draftText,
         canPlace: false,
         // Selecting the current sample is ignored, so only the other one is offered.
@@ -56,6 +58,7 @@ export function describe(state: SpatialState): ViewModel {
         phase,
         disclosure: DISCLOSURE,
         statusText: statusFor(phase),
+        sampleLabels: SAMPLE_LABEL,
         cardText: state.confirmedText,
         canPlace: false,
         canSelect: NONE,
@@ -68,6 +71,7 @@ export function describe(state: SpatialState): ViewModel {
         phase: "IDLE" as Phase,
         disclosure: DISCLOSURE,
         statusText: statusFor("IDLE"),
+        sampleLabels: SAMPLE_LABEL,
         cardText: null,
         canPlace: true,
         canSelect: NONE,

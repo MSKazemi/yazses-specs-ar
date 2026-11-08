@@ -3,6 +3,7 @@
 **Status:** PREPARATION / UNVERIFIED. Public technical experiment only; **not** an integrated or released YazSes feature.  
 **Prepared:** 2026-11-08. **Deadline:** 2026-11-09 **23:00 CET (Italy)** / 17:00 EST.  
 **Repository:** https://github.com/MSKazemi/yazses-specs-ar  
+**Live to-do / exact Git push handoff:** [TASKS.md](TASKS.md) · [GitHub EPIC #1](https://github.com/MSKazemi/yazses-specs-ar/issues/1) and [issues #2–#7](https://github.com/MSKazemi/yazses-specs-ar/issues). 
 **Official rules:** https://learn-specs.devpost.com/rules | **Devpost Learn:** https://github.com/challengepost/learn-specs | **Lens Studio:** https://ar.snap.com/download.
 
 ## Goal and pitch

@@ -1,0 +1,34 @@
+# Local dependencies and build/test caches
+node_modules/
+coverage/
+dist/
+build/
+.cache/
+.npm/
+*.tsbuildinfo
+
+# Private local environment/authentication material (including Lens MCP config)
+.env
+.env.*
+!.env.example
+**/.mcp.json
+**/.mcp.*.local.json
+**/.claude/settings.local.json
+*.pem
+*.key
+
+# Sensitive or temporary captures; explicit reviewed demo assets can be committed separately
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# Operating system and IDE local files
+.DS_Store
+Thumbs.db
+.vscode/.history/
+.idea/
+
+# Do not ignore actual Lens Studio .esproj, scene, script or asset files:
+# These are required in the final public hackathon submission.

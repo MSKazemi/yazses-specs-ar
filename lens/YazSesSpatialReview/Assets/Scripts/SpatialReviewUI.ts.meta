@@ -1,0 +1,74 @@
+- !<AssetImportMetadata/14003eb3-ad16-4f44-a7b9-d6dddc4c8f3d>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 0523dbcb-4eb1-4c59-a662-50370e32d85d
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 0523dbcb-4eb1-4c59-a662-50370e32d85d
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 7efc9d40-7c7d-43c7-af71-c31bbcc9aab1
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/7efc9d40-7c7d-43c7-af71-c31bbcc9aab1>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 0b6a02ae-6747-4c51-84a6-1e70ecb8b67d
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    buttonHeightCm: false
+    confirmedColor: false
+    controlPanel: false
+    draftColor: false
+    faceViewer: false
+    noteCard: false
+    noteHeightCm: false
+    noteWidthCm: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - noteCard: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      controlPanel: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      noteWidthCm: !<float> 28.000000
+      noteHeightCm: !<float> 18.000000
+      buttonHeightCm: 5.500000
+      faceViewer: true
+      confirmedColor: !<Vec4> {x: 0.450000, y: 0.900000, z: 0.550000, w: 1.000000}
+      draftColor: !<Vec4> {x: 1.000000, y: 0.820000, z: 0.300000, w: 1.000000}
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">SpatialReviewUI - note card and controls (passive view)</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"References"}'
+    - '// @input SceneObject noteCard {"hint":"Authored empty container for the note card (status, sentence, disclosure)."}'
+    - '// @input SceneObject controlPanel {"hint":"Authored empty container for the six buttons, placed directly below the note card."}'
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input float noteWidthCm = 28 {"hint":"Note card width in cm.", "widget":"slider", "min":20, "max":40, "step":0.5}'
+    - '// @input float noteHeightCm = 18 {"hint":"Note card height in cm.", "widget":"slider", "min":12, "max":28, "step":0.5}'
+    - '// @input float buttonHeightCm = 5.5 {"hint":"Button height in cm. Minimum 4 cm for comfortable targets; 5-6 cm recommended.", "widget":"slider", "min":4, "max":8, "step":0.1}'
+    - '// @input bool faceViewer = true {"hint":"When on, the whole note + controls group yaws gently to face the viewer (SIK Billboard, Y axis only). Position never changes. Off = fixed angle."}'
+    - '// @input vec4 confirmedColor = "{0.45, 0.9, 0.55, 1}" {"hint":"Status colour for Confirmed.", "widget":"color"}'
+    - '// @input vec4 draftColor = "{1, 0.82, 0.3, 1}" {"hint":"Status colour for Draft - not confirmed.", "widget":"color"}'
+    - '// @ui {"widget":"group_end"}'

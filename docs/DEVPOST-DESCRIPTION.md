@@ -38,24 +38,26 @@ A small simulated tabletop scene has a note card beside a workbench. The user:
 4. Deliberately confirms or cancels. A repeated Confirm has no extra effect; Cancel commits nothing.
 5. Resets to a clean placed note. An interruption discards the draft and cannot confirm it.
 
-Status text names the current phase in words, so it is never colour-only. `[FILL AFTER BUILD: describe what the Lens in Preview actually does, including whether the card stays fixed in the scene as the viewpoint moves]`
+Status text names the current phase in words, so it is never colour-only. In Lens Studio Preview (SPECS 27, Interactive) the Lens shows a virtual 60 x 40 cm workbench about 110 cm ahead with a blue and a yellow 8 cm block. The note card floats at a fixed position beside the workbench with its buttons directly beneath it. It stays at that position when the viewpoint moves and turns about its vertical axis to face the viewer (a yaw-only Spectacles Interaction Kit Billboard); controls that are not valid in a state are hidden, and the currently selected sample button stays visible but inactive.
 
 ## How we built it
 
 The plan uses the organizer's official toolchain:
 
-- **Devpost Learn `plan-lens`** to run the design interview and produce `devpost/design-brief.md`. `[FILL AFTER BUILD: state that this ran, with the brief's path, or remove this line]`
-- **Snap CLAD** and **Lens Studio MCP**, driven from Claude Code with Lens Studio open, to inspect and build the scene. `[FILL AFTER BUILD: state what was actually done through MCP, with versions]`
-- **Lens Studio (SPECS Base Template)** and its **Preview** to run and verify the Lens. `[FILL AFTER BUILD: Lens Studio version]`
+- **Devpost Learn `plan-lens`** design brief: the approved brief is in `lens/YazSesSpatialReview/devpost/design-brief.md`. `[OWNER TO CONFIRM: that you answered the plan-lens interview yourself]`
+- **Snap CLAD** and **Lens Studio MCP**, driven from Claude Code with Lens Studio open: the scene (workbench, blocks, note anchor, script wiring) was created and wired through the MCP scene tools, TypeScript was compiled and run through the MCP, Preview was configured and captured through it, and the acceptance tests were run through the LEAF panel via the MCP.
+- **Lens Studio 5.24.1 (SPECS Base Template)** and its **Preview** (SPECS 27, Interactive) to run and verify the Lens, with Spectacles Interaction Kit 0.18.0, Spectacles UI Kit and LEAF 2.0.2.
 
-Before the editor stage, the review logic was written as a small, pure TypeScript state machine with no dependency on Lens Studio, a browser or Node at runtime. Its phases are IDLE, PLACED, DRAFT, CONFIRMED and CANCELLED; its events are place, select sample, confirm, cancel, reset and interrupt. It has unit tests run with Vitest. `[FILL AFTER BUILD: test count and result from the recorded run]` The plan is to map this logic into Lens Studio's supported scripting and check it compiles and behaves in Preview. `[FILL AFTER BUILD: whether this worked, and what had to change]`
+Before the editor stage, the review logic was written as a small, pure TypeScript state machine with no dependency on Lens Studio, a browser or Node at runtime. Its phases are IDLE, PLACED, DRAFT, CONFIRMED and CANCELLED; its events are place, select sample, confirm, cancel, reset and interrupt. It has unit tests run with Vitest (recorded on Ubuntu in an earlier commit; see `docs/TESTING.md`). The same source files are copied unchanged into the Lens project (`Assets/Scripts/Logic/`), compile in Lens Studio without adaptation, and drive the Lens through a small controller script; the UI script only renders the logic's view model.
 
 Parts of the code were written with an AI coding assistant; the human author reviewed what was submitted. `[OWNER TO CONFIRM wording]`
 
 ## Challenges
 
 - Keeping the review step safe: no transition may confirm without an explicit Confirm received while a draft is open, including after a switch, reset or interruption.
-- Separating what can be verified without the editor (state logic) from what cannot (scene, Preview behaviour). The editor was only available for part of the event period. `[FILL AFTER BUILD: real challenges encountered in Lens Studio]`
+- Separating what can be verified without the editor (state logic) from what cannot (scene, Preview behaviour). The editor was only available for part of the event period.
+- Package versions: the Asset Library's newer UI Kit, LEAF 4.0.0 and preview-agent packages import a newer SIK package name than the one in the 5.24.1 SPECS Base Template, which broke compilation. We kept the template's packages, used LEAF 2.0.2 (compatible), and removed the incompatible add-ons.
+- Preview mouse clicks are not driven by the generic injected-tap tool, so button presses are tested through LEAF's SIK interactor instead.
 - Being clear that the input is simulated, so the Lens cannot be mistaken for working dictation.
 
 ## Honest limitations
@@ -63,10 +65,10 @@ Parts of the code were written with an AI coding assistant; the human author rev
 - Simulated input only: two preset strings. No microphone, no speech recognition, no live transcription.
 - Not integrated with YazSes; no YazSes code or bridge is used.
 - No testing on physical SPECS or any headset; no hardware compatibility is claimed.
-- Verified only in Lens Studio Preview `[FILL AFTER BUILD: confirm or correct]`.
+- Verified only in Lens Studio Preview (SPECS 27, Interactive); readability, comfort and hand tracking on real glasses are unproven.
 - No object recognition; the blocks are part of the scene or sentence, not detected.
 - No user testing and no evidence of accessibility benefit.
-- `[FILL AFTER BUILD: any LEAF result, or "LEAF tests were not run"]`
+- LEAF (Preview target): five scenarios, one per acceptance criterion, all passed on the final runs; criterion 5 moves the camera by script with device tracking suspended, so it is not a real walk-around, and rotation toward the viewer is not asserted. No test ran on a device. See `docs/TESTING.md`.
 
 ## What's next (research directions, not commitments)
 
@@ -76,7 +78,7 @@ Parts of the code were written with an AI coding assistant; the human author rev
 
 ## Built with
 
-- Lens Studio (SPECS Base Template) and Lens Studio Preview `[FILL AFTER BUILD: version]`
+- Lens Studio 5.24.1 (SPECS Base Template), Lens Studio Preview, Spectacles Interaction Kit, Spectacles UI Kit, LEAF
 - Snap CLAD and Lens Studio MCP
 - Devpost Learn `plan-lens` skill
 - TypeScript
@@ -85,6 +87,6 @@ Parts of the code were written with an AI coding assistant; the human author rev
 
 ## Links
 
-- Source: https://github.com/MSKazemi/yazses-specs-ar `[FILL AFTER BUILD: confirm the repository is public and contains the Lens project files]`
+- Source: https://github.com/MSKazemi/yazses-specs-ar (Lens project in `lens/YazSesSpatialReview/`) `[OWNER: confirm the push landed and the repo is public]`
 - Demo video: `[FILL AFTER BUILD: public YouTube URL, under 3 minutes]`
 - Related project (not integrated): https://github.com/MSKazemi/yazses

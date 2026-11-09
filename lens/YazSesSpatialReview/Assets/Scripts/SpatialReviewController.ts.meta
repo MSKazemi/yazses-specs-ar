@@ -1,0 +1,56 @@
+- !<AssetImportMetadata/5060e094-cb90-4a62-a4cf-1efd5d2fdf19>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 28ebdb95-391d-4249-a1a6-813706d6831e
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 28ebdb95-391d-4249-a1a6-813706d6831e
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> eb08ccfc-8ff7-49df-9a00-91728a872813
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/eb08ccfc-8ff7-49df-9a00-91728a872813>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: baa14713-b2f1-4ecf-8f34-41b572530879
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    demoScript: false
+    ui: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - ui: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      demoScript: ""
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">SpatialReviewController - state + dispatch</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"References"}'
+    - '// @input AssignableType_1 ui {"hint":"The SpatialReviewUI component that renders the note card and buttons."}'
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Debug"}'
+    - '// @input string demoScript {"hint":"Optional comma-separated list of UI actions replayed once at start (PLACE, SELECT_A, SELECT_B, CONFIRM, CANCEL, RESET, INTERRUPT). Empty = normal behaviour. For evidence capture only; it dispatches the same events as the buttons."}'
+    - '// @ui {"widget":"group_end"}'
